@@ -51,7 +51,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     final int MY_PERMISSION_REQUEST_CODE = 100;
     int counter = 0;
 
-    private TextToSpeech txtSpeech;
+    //private TextToSpeech txtSpeech;
 
     CameraBridgeViewBase cameraBridgeViewBase;
     BaseLoaderCallback baseLoaderCallback;
@@ -104,15 +104,6 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
-        txtSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                if(i != ERROR)
-                {
-                    txtSpeech.setLanguage(Locale.KOREAN);
-                }
-            }
-        });
 
         cameraBridgeViewBase = (JavaCameraView)findViewById(R.id.CameraView);
         cameraBridgeViewBase.setVisibility(SurfaceView.VISIBLE);
@@ -247,23 +238,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                     Imgproc.putText(frame, cocoNames.get(idGuy)+" "+intConf + "%", box.tl(), Core.FONT_HERSHEY_SIMPLEX, 2, new Scalar(0, 255, 0), 2);
 
                     Imgproc.rectangle(frame, box.tl(), box.br(), new Scalar(255, 0, 0), 2);
-                    
-                    if(cocoNames.get(idGuy) == "a person")
-                    {
-                        FuncVoiceOut("사람");
-                    }
-                    else if(cocoNames.get(idGuy) == "a bus")
-                    {
-                        FuncVoiceOut("버스");
-                    }
-                    else if(cocoNames.get(idGuy) == "a bicycle")
-                    {
-                        FuncVoiceOut("자전거");
-                    }
-                    else if(cocoNames.get(idGuy) == "a car")
-                    {
-                        FuncVoiceOut("자동차");
-                    }
+
                 }
             }
         }
@@ -318,24 +293,5 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
             cameraBridgeViewBase.disableView();
         }
 
-        if(txtSpeech != null){
-            txtSpeech.stop();
-            txtSpeech.shutdown();
-            txtSpeech = null;
-        }
-    }
-
-    private void FuncVoiceOut(String OutMsg) {
-        if (OutMsg.length() < 1) return;
-
-        txtSpeech.setPitch(1.0f);//목소리 톤1.0
-        txtSpeech.setSpeechRate(1.0f);//목소리 속도
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            txtSpeech.speak(OutMsg, TextToSpeech.QUEUE_FLUSH, null, null);
-        }
-        else
-        {
-            txtSpeech.speak(OutMsg, TextToSpeech.QUEUE_FLUSH, null);
-        }
     }
 }

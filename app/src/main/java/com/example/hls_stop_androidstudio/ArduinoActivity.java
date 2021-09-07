@@ -48,8 +48,6 @@ public class ArduinoActivity extends AppCompatActivity {
     InputStream mInputStream = null;
     OutputStream mOutputStream = null;
 
-    Handler mHandler;
-
     int readBufferPosition;
     byte[] readBuffer;
     Thread mWorkedThread;
@@ -61,7 +59,7 @@ public class ArduinoActivity extends AppCompatActivity {
     Button btnGetResult;
     TextView distance;
 
-    private TextToSpeech txtSpeech;
+    //private TextToSpeech txtSpeech;
 
     final static UUID BT_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -70,6 +68,7 @@ public class ArduinoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arduino);
 
+        /*
         txtSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -78,7 +77,8 @@ public class ArduinoActivity extends AppCompatActivity {
                     txtSpeech.setLanguage(Locale.KOREAN);
                 }
             }
-        });
+        })
+         */
 
         btnBTOn = findViewById(R.id.btn_btOn);
         btnGetResult = findViewById(R.id.btn_getResult);
@@ -94,13 +94,13 @@ public class ArduinoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(bluetoothAdapter == null) {
                     Toast.makeText(getApplicationContext(), "블루투스를 지원하지 않는 기기입니다.", Toast.LENGTH_SHORT).show();
-                    FuncVoiceOut("블루투스를 지원하지 않는 기기입니다.");
+                    //FuncVoiceOut("블루투스를 지원하지 않는 기기입니다.");
                 }
                 else {
                     if (!bluetoothAdapter.isEnabled()) {
                         Intent intent = new Intent(bluetoothAdapter.ACTION_REQUEST_ENABLE);
                         startActivityForResult(intent, BLUETOOTH_REQUEST_CODE);
-                        FuncVoiceOut("블루투스를 사용하려면 오른쪽 아래의 사용을 눌러주세요.");
+                        //FuncVoiceOut("블루투스를 사용하려면 오른쪽 아래의 사용을 눌러주세요.");
                         btnBTOn.setText("블루투스 장치 선택");
                     }
                     else
@@ -165,7 +165,7 @@ public class ArduinoActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("블루투스 장치 선택");
-        FuncVoiceOut("블루투스 장치를 선택해주세요.");
+        //FuncVoiceOut("블루투스 장치를 선택해주세요.");
 
         List<String> deviceLists = new ArrayList<>();
         for(BluetoothDevice device : pairedDevices)
@@ -220,7 +220,7 @@ public class ArduinoActivity extends AppCompatActivity {
                         public void run() {
                             Toast.makeText(getApplicationContext(),
                                     deviceName + "연결 완료", Toast.LENGTH_LONG).show();
-                            FuncVoiceOut("블루투스 연결이 완료되었습니다.");
+                            //FuncVoiceOut("블루투스 연결이 완료되었습니다.");
                             btnBTOn.setText("블루투스 OFF");
                             mDialog.dismiss();
                         }
@@ -234,7 +234,7 @@ public class ArduinoActivity extends AppCompatActivity {
                             mDialog.dismiss();
                             Toast.makeText(getApplicationContext(),
                                     "블루투스 연결 오류",Toast.LENGTH_SHORT).show();
-                            FuncVoiceOut("블루투스 연결 오류");
+                            //FuncVoiceOut("블루투스 연결 오류");
                         }
                     });
                 }
@@ -313,29 +313,17 @@ public class ArduinoActivity extends AppCompatActivity {
         mWorkedThread.start();
     }
 
-
-    private void FuncVoiceOut(String OutMsg) {
-        if (OutMsg.length() < 1) return;
-
-        txtSpeech.setPitch(1.0f);//목소리 톤1.0
-        txtSpeech.setSpeechRate(1.0f);//목소리 속도
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            txtSpeech.speak(OutMsg, TextToSpeech.QUEUE_FLUSH, null, null);
-        }
-        else
-        {
-            txtSpeech.speak(OutMsg, TextToSpeech.QUEUE_FLUSH, null);
-        }
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        /*
         if(txtSpeech != null){
             txtSpeech.stop();
             txtSpeech.shutdown();
             txtSpeech = null;
         }
+
+         */
 
         try
         {
@@ -346,7 +334,7 @@ public class ArduinoActivity extends AppCompatActivity {
         }
         catch (Exception e)
         {
-            super.onDestroy();
+            //super.onDestroy();
         }
     }
 }

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnArduino;
     private Button btnCamera;
-    private TextToSpeech txtSpeech;
+    //private TextToSpeech txtSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btnArduino = findViewById(R.id.btn_Arduino);
         btnCamera = findViewById(R.id.btn_Camera);
 
+        /*
         txtSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        *
+         */
 
         btnArduino.setOnClickListener(new View.OnClickListener()
         {
@@ -52,13 +55,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                FuncVoiceOut("카메라를 선택하셨습니다. 버튼을 누르면 인식이 시작됩니다.");
+                // FuncVoiceOut("카메라를 선택하셨습니다. 버튼을 누르면 인식이 시작됩니다.");
                 Intent caIntent = new Intent(MainActivity.this, CameraActivity.class);
                 startActivity(caIntent);
             }
         });
     }
 
+    /*
     private void FuncVoiceOut(String OutMsg) {
         if (OutMsg.length() < 1) return;
 
@@ -73,13 +77,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+     */
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        /*
         if(txtSpeech != null){
             txtSpeech.stop();
             txtSpeech.shutdown();
             txtSpeech = null;
         }
+
+         */
     }
 }
