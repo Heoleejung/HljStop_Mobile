@@ -25,6 +25,7 @@
 
 # 앱 실행시
  센서와 카메라 중 하나 를 선택하여 물체를 인식한다.
+ 
 ![KakaoTalk_20210909_122448627](https://user-images.githubusercontent.com/87680486/132618509-191ba85b-4ba5-4b3b-a04a-8a6b44193d8f.jpg)
 
 < 센서 >
