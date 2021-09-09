@@ -10,7 +10,7 @@
 
 < 센서 >
 
-![KakaoTalk_20210909_122448627_01](https://user-images.githubusercontent.com/87680486/132618514-dcc5f7ec-77aa-4da5-a04f-b16e04b1966f.jpg)
+![KakaoTalk_20210909_164235514](https://user-images.githubusercontent.com/87680486/132644451-340f818d-25d3-4958-9340-317bc6d34906.jpg)
 
 < 카메라 >
 
