@@ -68,20 +68,8 @@ public class ArduinoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arduino);
 
-        /*
-        txtSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                if(i != ERROR)
-                {
-                    txtSpeech.setLanguage(Locale.KOREAN);
-                }
-            }
-        })
-         */
 
         btnBTOn = findViewById(R.id.btn_btOn);
-        btnGetResult = findViewById(R.id.btn_getResult);
         distance = findViewById(R.id.dist);
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
